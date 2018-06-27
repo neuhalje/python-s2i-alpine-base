@@ -14,7 +14,7 @@ build: ## Rebuild the Docker image
 	docker build --force-rm -t $(IMAGE_NAME):$(VERSION) -t $(IMAGE_NAME):latest .
 
 example: build ## build example docker image
-	s2i build https://github.com/neuhalje/python-s2i-alpine-base --context-dir=examples/setup-test-app/ $(IMAGE_NAME):$(VERSION) python-sample-app
+	s2i build https://github.com/neuhalje/python-s2i-alpine-base --context-dir=examples/pipenv-test-app/ $(IMAGE_NAME):$(VERSION) python-sample-app
 	@echo ""
 	@echo "   ----------   ----------   -------------   -----------"
 	@echo ""

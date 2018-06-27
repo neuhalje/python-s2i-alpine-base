@@ -23,7 +23,7 @@ LABEL \
       io.openshift.expose-services="8080:http" \
       io.openshift.tags="builder,python,python36,rh-python36" \
       com.redhat.component="python36-container" \
-      usage="s2i build https://github.com/neuhalje/python-s2i-alpine-base --context-dir=examples/setup-test-app/ $NAME python-sample-app" \
+      usage="s2i build https://github.com/neuhalje/python-s2i-alpine-base --context-dir=examples/pipenv-test-app/ $NAME python-sample-app" \
       # Location of the STI scripts inside the image
       io.openshift.s2i.scripts-url="image://${S2I_SCRIPTS}"
 
