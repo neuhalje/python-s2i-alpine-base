@@ -35,12 +35,8 @@ RUN mkdir -p ${HOME} && \
     mkdir -p /usr/libexec/s2i && \
     adduser -s /bin/sh -u 1001 -G root -h ${HOME} -S -D default && \
     chown -R 1001:0 /opt/app-root && \
-    apk -U upgrade && \
-    apk add --no-cache --update bash curl wget \
-        tar unzip findutils git gettext gdb lsof patch \
-        libcurl libxml2 libxslt openssl-dev zlib-dev \
-        make automake gcc g++ binutils-gold linux-headers paxctl libgcc libstdc++ \
-        python3 gnupg gpgme ncurses-libs ca-certificates && \
+    apk add --no-cache --update \
+        bash python3 gnupg gpgme ca-certificates && \
     update-ca-certificates --fresh && \
     rm -rf /var/cache/apk/* && \
     pip3 install pipenv
