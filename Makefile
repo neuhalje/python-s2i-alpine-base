@@ -1,7 +1,7 @@
 .PHONY: help test
 
 VERSION ?= `cat VERSION`
-IMAGE_NAME ?= bitwalker/s2i-alpine-base
+IMAGE_NAME ?= xuxxux/python-s2i-alpine-base
 
 help:
 	@echo "$(IMAGE_NAME):$(VERSION)"
@@ -12,6 +12,15 @@ test: ## Test the Docker image
 
 build: ## Rebuild the Docker image
 	docker build --force-rm -t $(IMAGE_NAME):$(VERSION) -t $(IMAGE_NAME):latest .
+
+example: build ## build example docker image
+	s2i build https://github.com/neuhalje/python-s2i-alpine-base --context-dir=examples/setup-test-app/ $(IMAGE_NAME):$(VERSION) python-sample-app
+	@echo ""
+	@echo "   ----------   ----------   -------------   -----------"
+	@echo ""
+	@echo "Start the example app with"
+	@echo "docker run -p8080:8080 python-sample-app"
+
 
 release: build ## Rebuild and release the Docker image to Docker Hub
 	docker push $(IMAGE_NAME):$(VERSION)

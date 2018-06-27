@@ -1,6 +1,6 @@
 #!/bin/bash
 # copied from https://github.com/sclorg/s2i-python-container/blob/master/3.6/s2i/bin/run
-source /opt/app-root/etc/generate_container_user
+source $S2I_SCRIPTS/generate_container_user
 
 set -e
 
@@ -18,7 +18,7 @@ function should_migrate() {
 
 # Guess the number of workers according to the number of cores
 function get_default_web_concurrency() {
-  limit_vars=$(cgroup-limits)
+  limit_vars=`${S2I_SCRIPTS}/cgroup-limits`
   local $limit_vars
   if [ -z "${NUMBER_OF_CORES:-}" ]; then
     echo 1
