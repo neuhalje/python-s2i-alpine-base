@@ -59,12 +59,16 @@ if [[ ! -z "$ENABLE_PIPENV" ]]; then
   # pipenv check
 elif [[ -f requirements.txt ]]; then
   echo "---> Installing dependencies ..."
-  pip install -r requirements.txt
+  pip3 install -r requirements.txt
 fi
 
 if [[ -f setup.py && -z "$DISABLE_SETUP_PY_PROCESSING" ]]; then
-  echo "---> Installing application ..."
+ echo "---> Installing application ..."
+ if [[  -z  ${ENABLE_PIPENV+x} ]]; then
   pip3 install .
+ else
+  pipenv run pip install -e .
+ fi
 fi
 
 if should_collectstatic; then
