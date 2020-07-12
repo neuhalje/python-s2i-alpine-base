@@ -5,7 +5,7 @@ name = "pypi"
 
 [packages]
 #"exampleapp" = {path = ".", editable = true}
-requests = "==2.17.0"
+requests = "==2.20.0"
 gunicorn = "==19.8.1"
 
 
